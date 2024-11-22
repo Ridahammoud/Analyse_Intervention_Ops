@@ -37,6 +37,62 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+def analyse_statistiques(df_filtre, operateurs):
+    # Création de métriques détaillées
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        st.metric(
+            label="📅 Période analysée", 
+            value=f"{df_filtre[date_colonne].min()} au {df_filtre[date_colonne].max()}"
+        )
+    
+    with col2:
+        st.metric(
+            label="👥 Nombre d'opérateurs", 
+            value=len(operateurs)
+        )
+    
+    with col3:
+        st.metric(
+            label="🔢 Total des interventions", 
+            value=len(df_filtre)
+        )
+
+def creation_graphique_avance(df_graph):
+    # Graphique interactif avec Plotly
+    fig = go.Figure()
+    
+    # Ajout de traces pour chaque opérateur
+    for operateur in df_graph['Prénom et nom'].unique():
+        df_op = df_graph[df_graph['Prénom et nom'] == operateur]
+        fig.add_trace(go.Scatter(
+            x=df_op[date_colonne], 
+            y=df_op['Répétitions'],
+            mode='lines+markers',
+            name=operateur,
+            line=dict(width=3),
+            marker=dict(size=10)
+        ))
+    
+    # Personnalisation du layout
+    fig.update_layout(
+        title={
+            'text': "Comparaison détaillée des interventions",
+            'y':0.9,
+            'x':0.5,
+            'xanchor': 'center', 
+            'yanchor': 'top',
+            'font': dict(size=20)
+        },
+        xaxis_title="Date",
+        yaxis_title="Nombre d'interventions",
+        legend_title="Opérateurs",
+        hovermode="x unified"
+    )
+    
+    st.plotly_chart(fig, use_container_width=True)
+
 
 def charger_donnees(fichier):
     df = pd.read_excel(fichier)
