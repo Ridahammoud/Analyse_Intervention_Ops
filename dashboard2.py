@@ -3,6 +3,41 @@ import streamlit as st
 from datetime import datetime, timedelta
 import plotly.express as px
 
+import plotly.graph_objects as go
+
+# Configuration du style Streamlit
+st.set_page_config(
+    page_title="Analyse des Interventions",
+    page_icon="📊",
+    layout="wide"
+)
+
+# Style personnalisé
+st.markdown("""
+    <style>
+    .main {
+        background-color: #f0f2f6;
+    }
+    .stApp {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .stTitle {
+        color: #2C3E50;
+        text-align: center;
+        font-size: 2.5em;
+        margin-bottom: 30px;
+    }
+    .stMetric {
+        background-color: white;
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    </style>
+""", unsafe_allow_html=True)
+
+
 def charger_donnees(fichier):
     df = pd.read_excel(fichier)
     return df
