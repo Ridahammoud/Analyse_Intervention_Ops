@@ -1,4 +1,8 @@
 streamlit
 pandas
+numpy
+datetime
 plotly
 openpyxl
+reportlab
+xlsxwriter
