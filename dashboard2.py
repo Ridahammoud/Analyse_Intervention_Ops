@@ -71,13 +71,13 @@ if fichier_principal is not None:
 
     if equipe_selectionnee == "Team 1 : Christian":
         team_1 = [
-            "Abdelaziz Hani Ddamir", "Aboubacar Tamadou", "Alhousseyni Dia",
+            "Abdelaziz Hani Ddamir", "Aboubacar Tamadou", "Alhousseyni Dia"
             # Ajoutez tous les noms de la Team 1 ici
         ]
         df_principal = df_principal[df_principal['Prénom et nom'].isin(team_1)]
     elif equipe_selectionnee == "Team 2 : Hakim":
         team_2 = [
-            "Abdoul Ba", "Aladji Sakho", "Amadou Sow",
+            "Abdoul Ba", "Aladji Sakho", "Amadou Sow"
             # Ajoutez tous les noms de la Team 2 ici
         ]
         df_principal = df_principal[df_principal['Prénom et nom'].isin(team_2)]
