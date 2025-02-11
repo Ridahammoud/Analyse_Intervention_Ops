@@ -90,18 +90,6 @@ def generate_pdf(df, filename="tableau.pdf"):
     buffer.seek(0)
     return buffer.getvalue()
 
-# Configuration de la page Streamlit
-st.set_page_config(page_title="Analyse des Interventions", page_icon="📊", layout="wide")
-st.title("📊 Analyse des interventions des opérateurs")
-
-fichier_principal = "https://docs.google.com/spreadsheets/d/1-iyR9W5tjVIn9SuvzuYGR-Ncf6aJLE1x/export?format=xlsx"
-df_principal = charger_donnees(fichier_principal)
-
-if fichier_principal is not None:
-    
-    df_principal['Team'] = df_principal['Prénom et nom'].apply(assign_team)
-
-    col1, col2 = st.columns([2, 3])
 
     with col1:
         col_prenom_nom = df_principal.columns[4]
