@@ -2,8 +2,8 @@ streamlit
 pandas
 numpy
 datetime
-plotly.express
 openpyxl
 reportlab
 xlsxwriter
 plotly
+matplotlib
